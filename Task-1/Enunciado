@@ -1,0 +1,17 @@
+Implementar em C ou C++ em grupos de até 3 pessoas para entregar hoje o código fonte no final da aula (10-setembro) os métodos de busca:
+
+- busca sequencial em um vetor inicializado de inteiros já ordenado
+
+- busca binária em um vetor inicializado de inteiros já ordenado
+
+- busca em árvore binária de busca já criada e inicializada
+
+- inserção e busca em tabela hash (h(k) = k % M) utilizando tratamento de colisão:
+
+---- endereçamento aberto (N=10 elementos no arranjo já inicializado, Tamanho da tabela hash inicialmente vazia M=10)
+
+---- lista ligada (N=10, M=7)
+
+Durante a busca em cada um dos métodos imprima cada elemento que foi comparado com a chave de pesquisa.
+
+No final, imprima o número de comparações realizadas.
