@@ -3,8 +3,11 @@
  * Author: Chuck  and Nobusada
  *
  * Created on September 10, 2015, 10:27 AM
- * TODO: Verificar o que foi feito
- * TODO 2: Fazer o que precisa acabar xD
+ * TODO -1: Motherfucking english
+ * TODO 1: BTree de struct para Classe
+ * TODO 2.1: BTree - Balancear a inserção e a remoção
+ * TODO 2.2: Fazer uma HashTable com tratamento de colisão
+ * TODO 3: Colocar BTree e a busca em outro arquivo e importar o header específico
  */
 
 #include "main.h"
@@ -13,6 +16,7 @@ using namespace std;
 
 static int tam=10;
 
+// TODO: Não é melhor transformar isso em uma Classe? "C+" vs C++
 struct ArvoreB {
 
     int valor;
@@ -29,6 +33,8 @@ struct ArvoreB {
 };
 
 void inserirBtree(ArvoreB *&raiz,int valor){
+    // TODO: balancear a inserção na BTree
+
     if(raiz==NULL){
         raiz = new ArvoreB(valor);
     }
@@ -41,6 +47,8 @@ void inserirBtree(ArvoreB *&raiz,int valor){
 }
 
 void imprimirBtree(ArvoreB *raiz){
+    // TODO: balancear a remoção na BTree
+
     if(raiz==NULL){
         return;
     }
@@ -55,6 +63,7 @@ void imprimirBtree(ArvoreB *raiz){
 }
 
 void procurarBtree(ArvoreB *raiz, int chave, int cont){
+
     cont++;
     if(raiz==NULL){
         cout<<"Valor nao encontrado"<<endl;
@@ -76,10 +85,14 @@ void procurarBtree(ArvoreB *raiz, int chave, int cont){
     procurarBtree(raiz->esquerda,chave, cont);
 
 }
-void buscaBinaria(vector <int> v,int chave, int cont,int inicio, int fim){
+
+void buscaBinaria(vector <int> v, int chave, int cont, int inicio, int fim){
+
     cont++;
     int i = (inicio+fim)/2;
+
     cout<<"Comparou "<<v[i]<<" e a chave "<<chave<<endl;
+
     if(v[i]==chave){
         cout<<"Numero de iterações binárias: ";
         cout<<cont<<endl;
@@ -100,14 +113,16 @@ void buscaBinaria(vector <int> v,int chave, int cont,int inicio, int fim){
 }
 
 
-
 int main(int argc, char** argv) {
+
     srand(time(NULL));
     vector <int> v;
     int r, chave, cont,t;
     ArvoreB *raiz;
     raiz = NULL;
+
     cout<<"Valores inseridos:"<<endl;
+
     for(int i=0;i<tam;i++){
         r = 1+ rand() % 99;
 
@@ -120,8 +135,6 @@ int main(int argc, char** argv) {
     cout<<"Vetor organizado:"<<endl;
 
     sort(v.begin(), v.end());
-
-
 
     for(int i=0;i<tam;i++){
         cout<<v[i]<<" ";
@@ -136,6 +149,7 @@ int main(int argc, char** argv) {
 
     cout<<"Digite a chave que procura: ";
     cin>>chave;
+    // TODO: Transformar isso em um método no arquivo auxiliar e só chamar a função
     cont=0;
     for(int i=0;i<tam;i++){
         cont++;
@@ -147,9 +161,9 @@ int main(int argc, char** argv) {
     cont=0;
 
 
-    buscaBinaria(v,chave,0,0,(tam-1));
+    buscaBinaria(v,chave,0,0,(tam-1)); // TODO: Adicionar o parâmetro verbose
 
-    procurarBtree(raiz,chave,0);
+    procurarBtree(raiz,chave,0); // TODO: Adicionar o parâmetro verbose
 
     system("PAUSE");
 
