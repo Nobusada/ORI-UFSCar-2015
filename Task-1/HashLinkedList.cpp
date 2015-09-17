@@ -134,3 +134,7 @@ void HashLinkedList::incrementLenght() {
 void HashLinkedList::decrementLenght() {
     this->length--;
 }
+
+HashEntry* HashLinkedList::getHead() {
+    return this->head;
+}

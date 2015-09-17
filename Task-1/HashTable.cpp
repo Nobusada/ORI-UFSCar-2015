@@ -22,11 +22,12 @@ bool HashTable::insert(int key)
     HashEntry *newEntry = new HashEntry();
     newEntry->key = key;
     newEntry->next = NULL;
+    newEntry->isEmpty = false;
 
     int index = hash(newEntry->key);
     int baseIndex = index;
 
-    while(list[index].insert(newEntry)){ //this is bugging
+    while(list[index].insert(newEntry)){
         index = (index + 1) % tableLength;
         if (index == baseIndex) return false; // is full
     }
@@ -56,11 +57,12 @@ void HashTable::printHashTable()
     }
 }
 
+//TODO: Fix these destructors.
 HashTable::~HashTable()
 {
     int i;
     for (i = 0; i < tableLength; i++){
-        delete this->list;
+        delete this->list[i].getHead();
     }
-    delete [] this->list;
+    delete this->list;
 }
