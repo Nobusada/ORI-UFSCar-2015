@@ -15,9 +15,9 @@ HashLinkedList::HashLinkedList()
 }
 
 bool HashLinkedList::insert(HashEntry *entry){
-    if (this->getHead()->isEmpty == true)
+    if (this->head->isEmpty)
     {
-        this->head = entry;
+        this->head = entry; // aqui tá vindo null em um head...
         this->head->next = NULL;
         this->head->isEmpty = false;
         this->incrementLenght();
@@ -25,7 +25,7 @@ bool HashLinkedList::insert(HashEntry *entry){
     }
 
     HashEntry *ptr1;
-    HashEntry *ptr2 = this->getHead();
+    HashEntry *ptr2 = this->head;
 
     while (ptr2 != NULL)
     {
@@ -34,7 +34,7 @@ bool HashLinkedList::insert(HashEntry *entry){
     }
 
     if (this->getLength() < LIST_SIZE) {
-        ptr2->next = entry;
+        ptr2 = entry;
         ptr1->next = ptr2;
         ptr2->next = NULL;
         length++;
@@ -44,11 +44,11 @@ bool HashLinkedList::insert(HashEntry *entry){
 }
 
 bool HashLinkedList::remove(int key){
-    if (this->getHead()->next == NULL)
+    if (this->head->next == NULL)
         return false;
 
-    HashEntry *ptr1 = this->getHead();
-    HashEntry *ptr2 = this->getHead();
+    HashEntry *ptr1 = this->head;
+    HashEntry *ptr2 = this->head;
 
     while (ptr2 != NULL){
         if (ptr2->key == key){
@@ -76,7 +76,7 @@ HashEntry* HashLinkedList::get(int key, int &counter){
                 " is the same as the actual key (" << ptr1->key
                 << ") on the list" << endl;
 
-        if ((ptr1 != this->getHead()) && (ptr1->key == key))
+        if ((ptr1 != this->head) && (ptr1->key == key))
             return ptr1;
         ptr2 = ptr1->next;
     }
@@ -92,13 +92,13 @@ void HashLinkedList::print()
     }
 
     HashEntry *ptr1;
-    HashEntry *ptr2 = this->getHead();
+    HashEntry *ptr2 = this->head;
     cout << "\n{ ";
 
     while (ptr2)
     {
         ptr1 = ptr2;
-        if (ptr1 != this->getHead())
+        if (ptr1 != this->head)
         {
             cout << ptr1->key;
             if (ptr1->next) cout << ", ";
@@ -117,7 +117,7 @@ int HashLinkedList::getLength()
 HashLinkedList::~HashLinkedList()
 {
     HashEntry *ptr1;
-    HashEntry *ptr2 = this->getHead();
+    HashEntry *ptr2 = this->head;
 
     while (ptr2 != NULL)
     {
@@ -125,10 +125,6 @@ HashLinkedList::~HashLinkedList()
         ptr2 = ptr1->next;
         if (ptr2 != NULL) delete ptr1;
     }
-}
-
-HashEntry* HashLinkedList::getHead() {
-    return this->head;
 }
 
 void HashLinkedList::incrementLenght() {
